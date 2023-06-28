@@ -22,7 +22,7 @@ const ProductScreen = (props) => {
             </li>
             <li>{product.rating} Stars ({product.numReviews} Customer Reviews)</li>
             <li>
-              <strong>{product.price}</strong>
+              Price: <strong>${product.price}</strong>
             </li>
             <li>Description :{product.description}</li>
           </ul>
@@ -45,7 +45,7 @@ const ProductScreen = (props) => {
                     </select>
                 </li>
                 <li>
-                    <button>Add to Cart</button>
+                    <button className="button primary">Add to Cart</button>
                 </li>
             </ul>
         </div>

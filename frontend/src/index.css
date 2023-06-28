@@ -4,7 +4,7 @@ html{
 }
 
 body{
-  font: 1.6rem Helvetica;
+  font: 1.4rem Helvetica;
   height: 100vh;
   margin: 0;
 }
@@ -174,6 +174,7 @@ a:hover{
 /* Product Details */
 .back-to-results{
   font-size: 1rem;
+  padding: 0.5rem;
 }
 
 .details{
@@ -181,10 +182,11 @@ a:hover{
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .details-image{
-  flex: 2 1 45rem;
+  flex: 2 1 25rem;
 }
 
 .details-image img{
@@ -197,7 +199,11 @@ a:hover{
 }
 
 .details-action{
-  flex: 1 1 20rem;
+  flex: 1 1 15rem;
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  background-color: #f8f8f8;
+  padding: 0.5rem;
 }
 
 .details-action ul, .details-info ul{
@@ -208,4 +214,25 @@ a:hover{
 .details-action li, .details-info li{
   list-style-type: none;
   padding: 0;
+}
+
+.details-action ul li:last-child{
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.button{
+  padding: 0.75rem;
+  border: 0.1rem #808080 solid;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.button:hover{
+  border: .1rem #404040 solid;
+}
+
+.button.primary{
+  background-color: #f0c040;
 }

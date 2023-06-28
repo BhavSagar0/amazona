@@ -1,6 +1,10 @@
+import { useState } from "react";
 import data from "../data/data";
 import { Link } from "react-router-dom";
 const HomeScreen = (props) => {
+
+  const [products, setProducts] = useState([]);
+
   return (
     <ul className="products">
       {data.products.map((product, i) => (
