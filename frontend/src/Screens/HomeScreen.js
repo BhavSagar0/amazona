@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 
 const HomeScreen = (props) => {
   // const [products, setProducts] = useState([]);
 
-  const productList = useSelector(state => state.productList);
+  const productList = useSelector((state) => state.productList);
 
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
@@ -18,10 +19,9 @@ const HomeScreen = (props) => {
     //   setProducts(data);
     // }
     // fetchData();
-    return () => {
-    };
-  }, [])
-  
+    return () => {};
+  }, []);
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try{
@@ -34,13 +34,17 @@ const HomeScreen = (props) => {
   //       console.error(err.response.status);
   //       console.error(err.response.headers);
   //     }
-      
+
   //   };
   //   fetchData();
   //   return () => {};
   // }, []);
 
-  return (
+  return loading ? (
+    <div>loading...</div>
+  ) : error ? (
+    <div>{error}</div>
+  ) : (
     <ul className="products">
       {products.map((product, i) => (
         <li key={i}>
