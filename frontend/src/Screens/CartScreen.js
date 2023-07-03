@@ -14,9 +14,10 @@ const CartScreen = (props) => {
 
   useEffect(() => {
     if (productId) {
+        console.log('Ek baar aya!');
       dispatch(addToCart(productId, qty));
     }
-  });
+  }, []);
 
   return (
     <div className="cart">

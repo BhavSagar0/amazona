@@ -60,7 +60,7 @@ const ProductScreen = (props) => {
               <li>Status : {product.countInStock > 0 ? "InStock" : "Out of Stock"}</li>
               <li>
                 Qty :
-                <select disabled={!product.countInStock} value={qty} onClick={handleQty}>
+                <select disabled={!product.countInStock} value={qty} onChange={handleQty}>
                   {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x} value={x + 1}>
                       {x + 1}
