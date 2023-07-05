@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
-import { addToCart } from "../actions/cartActions";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 
 const CartScreen = (props) => {
-  const cart = useSelector(state => state.cart);
+  let navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const params = useParams();
   const productId = params.id;
@@ -14,10 +15,17 @@ const CartScreen = (props) => {
 
   useEffect(() => {
     if (productId) {
-        console.log('Ek baar aya!');
       dispatch(addToCart(productId, qty));
     }
   }, []);
+
+  const removeFromCartHandler = (productId) => {
+    dispatch(removeFromCart(productId));
+  }
+
+  const checkoutHandler = () => {
+    navigate("signing/?redirect=shipping");
+  }
 
   return (
     <div className="cart">
@@ -31,27 +39,46 @@ const CartScreen = (props) => {
             <div>Cart is empty!</div>
           ) : (
             cartItems.map((item) => (
-              <div>
-                <img src={item.image} alt="product" />
+              <li>
+                <div className="cart-image">
+                  <img src={item.image} alt="product" />
+                </div>
+
                 <div className="cart-name">
-                  <div>{item.name}</div>
+                  <div>
+                    <Link to={"/product/" + item.product}>{item.name}</Link>
+                  </div>
                   <div>
                     Qty:
-                    <select>
+                    <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                     </select>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => removeFromCartHandler(item.product)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
-                <div>{item.price}</div>
-              </div>
+                <div className="cart-price">{item.price}</div>
+              </li>
             ))
           )}
         </ul>
       </div>
-      <div className="cart-actions"></div>
-      Cart Screen
+      <div className="cart-action">
+        <h3>
+          Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : ${" "}
+          {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+        </h3>
+        <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
+          Proceed to checkout
+        </button>
+      </div>
     </div>
   );
 };
