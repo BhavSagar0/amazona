@@ -1,8 +1,9 @@
 import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
-import ProductScreen from "./screens/ProductScreen";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import CartScreen from "./screens/CartScreen";
+import ProductScreen from "./screens/ProductScreen";
+import SigninScreen from "./screens/SigninScreen";
 
 function App() {
   const openMenu = () => {
@@ -23,7 +24,7 @@ function App() {
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
-            <a href="signin.html">Sign In</a>
+            <Link to='/signin'>Sign In</Link>
           </div>
         </header>
         <aside className="sidebar">
@@ -44,9 +45,10 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
-              <Route path="/products/:id" element={<ProductScreen/>} />
-              <Route path="/" exact={true} element={<HomeScreen/>} />
-              <Route path="/cart/:id?" exact={true} element={<CartScreen/>} />
+              <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/products/:id" element={<ProductScreen />} />
+              <Route path="/" exact={true} element={<HomeScreen />} />
+              <Route path="/cart/:id?" exact={true} element={<CartScreen />} />
             </Routes>
           </div>
         </main>

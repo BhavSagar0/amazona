@@ -2,6 +2,7 @@ import express from "express";
 import data from "./data.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import userRoute from '../backend/routes/userRoute.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ mongoose
 
 const app = express();
 
+app.use('/api/users', userRoute);
 app.get("/api/products", (req, res) => {
   res.send(data.products);
 });
