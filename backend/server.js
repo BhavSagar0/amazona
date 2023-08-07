@@ -3,6 +3,7 @@ import data from "./data.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from '../backend/routes/userRoute.js';
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ mongoose
   .catch((err) => console.log(err.message));
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 app.get("/api/products", (req, res) => {
   res.send(data.products);
